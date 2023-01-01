@@ -1,3 +1,5 @@
+python manage.py runserver
+
 # Создание и активация виртуального окружения
 python -m venv venv
 venv\Scripts\activate
@@ -11,3 +13,7 @@ pip install django
 pip install djangorestframework
 
 django-admin startproject projectname
+django-admin startapp appname
+
+python manage.py makemigrations
+python manage.py migrate
