@@ -1,2 +1,3 @@
-# gb_learn_django_rest
-Geekbrains Django REST framework course
+# Django REST framework
+### Урок 1. Введение в REST и Django REST Framework
+### Урок 2. Введение в React. Компонентный подход
