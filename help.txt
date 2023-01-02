@@ -17,3 +17,9 @@ django-admin startapp appname
 
 python manage.py makemigrations
 python manage.py migrate
+
+npm install -g npx
+npx create-react-app appname
+npm install axios
+
+pip install django-cors-headers
