@@ -23,3 +23,6 @@ npx create-react-app appname
 npm install axios
 
 pip install django-cors-headers
+
+
+pip install djangorestframework-camel-case
