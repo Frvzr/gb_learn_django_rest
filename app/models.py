@@ -8,3 +8,16 @@ class Author(models.Model):
     birthday_year = models.PositiveBigIntegerField()
 
 
+class Biography(models.Model):
+    text = models.TextField()
+    author = models.OneToOneField(Author, on_delete=models.CASCADE)
+
+
+class Book(models.Model):
+    name = models.CharField(max_length=32)
+    author = models.ManyToManyField(Author)
+
+
+class Article(models.Model):
+    name = models.CharField(max_length=32)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
