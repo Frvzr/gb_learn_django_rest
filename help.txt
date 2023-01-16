@@ -26,3 +26,6 @@ pip install django-cors-headers
 
 
 pip install djangorestframework-camel-case
+
+
+pip install django-filter

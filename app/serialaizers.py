@@ -5,7 +5,7 @@ from .models import Author, Biography, Book, Article
 class AuthorModelSerializer(ModelSerializer):
     class Meta:
         model = Author
-        fields = ['id','first_name', 'last_name']
+        fields = ['id','first_name', 'last_name', 'birthday_year']
 
 
 class BiographyModelSerializer(ModelSerializer):
