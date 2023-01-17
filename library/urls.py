@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from app.views import AuthorModelViewSet, BiographyModelViewSet, BookModelViewSet, ArticleModelViewSet
+from app.views import AuthorModelViewSet, BiographyModelViewSet, BookModelViewSet, ArticleModelViewSet, MyAPIView
 from todo.views import UserModelViewSet, ProjectModelViewSet, ToDoModelViewSet
 
 
@@ -26,12 +26,15 @@ router.register('authors', AuthorModelViewSet)
 router.register('biography', BiographyModelViewSet)
 router.register('books', BookModelViewSet)
 router.register('articles', ArticleModelViewSet)
-router.register('users', UserModelViewSet)
-router.register('projects', ProjectModelViewSet)
-router.register('todo', ToDoModelViewSet)
-
+router.register('users', UserModelViewSet, basename="users")
+router.register('projects', ProjectModelViewSet, basename='projects')
+router.register('todo', ToDoModelViewSet, basename='todoo')
+router.register('my', MyAPIView, basename='my')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    #path('myapi/', MyAPIView.as_view({'get': 'list'}))
+    #path('api/users/', UserModelViewSet.as_view())
+    #path('api/todo/', ToDoModelViewSet.as_view())
 ]

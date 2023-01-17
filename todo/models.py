@@ -12,9 +12,10 @@ class Project(models.Model):
 
 
 class ToDo(models.Model):
-    project = models.ManyToManyField(Project)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     text = models.TextField()
     created = models.DateField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
-    active = models.TextChoices("Active", "Closed")
+    completed = models.BooleanField(default=False)
+
