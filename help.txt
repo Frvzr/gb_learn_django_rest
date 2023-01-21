@@ -18,9 +18,11 @@ django-admin startapp appname
 python manage.py makemigrations
 python manage.py migrate
 
+npm start
 npm install -g npx
 npx create-react-app appname
 npm install axios
+npm install react-router-dom@5.2.0
 
 pip install django-cors-headers
 
@@ -29,3 +31,4 @@ pip install djangorestframework-camel-case
 
 
 pip install django-filter
+
