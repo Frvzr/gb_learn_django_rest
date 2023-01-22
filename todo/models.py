@@ -1,6 +1,6 @@
 from django.db import models
 
-class User(models.Model):
+class Worker(models.Model):
     first_name = models.CharField(max_length=64, verbose_name="First name")
     last_name = models.CharField(max_length=64, verbose_name="Last name")
 
@@ -8,7 +8,7 @@ class User(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=32, verbose_name="Project name")
     link = models.URLField(blank=True, verbose_name="Link")
-    worker = models.ManyToManyField(User)
+    worker = models.ManyToManyField(Worker)
 
 
 class ToDo(models.Model):
@@ -16,6 +16,6 @@ class ToDo(models.Model):
     text = models.TextField()
     created = models.DateField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    writer = models.ForeignKey(Worker, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
 
