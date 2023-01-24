@@ -1,10 +1,10 @@
 from rest_framework.serializers import ModelSerializer
-from todo.models import User, Project, ToDo
+from todo.models import Worker, Project, ToDo
 
 
 class UserModelSerializer(ModelSerializer):
     class Meta:
-        model = User
+        model = Worker
         #fields = '__all__'
         fields = ['id', 'first_name', 'last_name']
 
