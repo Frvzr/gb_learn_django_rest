@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Project = ({ item }) => {
+const ProjectItem = ({ item }) => {
     return (
         <tr>
             <td>
@@ -14,7 +14,7 @@ const Project = ({ item }) => {
                 {item.link}
             </td>
             <td>
-                {item.user.first_name} {item.user.last_name}
+                {item.worker.first_name} {item.worker.last_name}
             </td>
         </tr>
     )
@@ -35,7 +35,7 @@ const ProjectList = ({ items }) => {
             <th>
                 Worker
             </th>
-            {items.map((item) => <Project item={item} />)}
+            {items.map((item) => <ProjectItem item={item} />)}
         </table>
     )
 }

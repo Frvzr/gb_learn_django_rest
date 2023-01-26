@@ -1,23 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const User = ({ user }) => {
+const WorkerItem = ({ item }) => {
     return (
         <tr>
             <td>
-                <Link to={`user/${user.id}`}>{user.id}</Link>
+                <Link to={`user/${item.id}`}>{item.id}</Link>
             </td>
             <td>
-                {user.first_name}
+                {item.first_name}
             </td>
             <td>
-                {user.last_name}
+                {item.last_name}
             </td>
         </tr>
     )
 }
 
-const UserList = ({ users }) => {
+const WorkerList = ({ items }) => {
     return (
         <table>
             <th>
@@ -29,9 +29,9 @@ const UserList = ({ users }) => {
             <th>
                 Last name
             </th>
-            {users.map((user) => <User user={user} />)}
+            {items.map((item) => <WorkerItem item={item} />)}
         </table>
     )
 }
 
-export default UserList
+export default WorkerList
