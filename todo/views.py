@@ -1,6 +1,6 @@
 from rest_framework.viewsets import  ViewSet
 from todo.models import Worker, Project, ToDo
-from todo.serializer import UserModelSerializer, ProjectModelSerializer, ToDoModelSerializer
+from todo.serializer import UserModelSerializer, ProjectModelSerializer, ToDoModelSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.pagination import LimitOffsetPagination
@@ -9,6 +9,14 @@ from rest_framework.decorators import action
 from rest_framework import filters
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissionsOrAnonReadOnly
+from rest_framework.views import APIView
+from django.contrib.auth.models import User
+
+class CurrentUserView(ViewSet, ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'id'
+       
 
 class UserModelViewSet(ViewSet, ListAPIView, CreateAPIView, UpdateAPIView, RetrieveAPIView):
     authentication_classes = [SessionAuthentication]
@@ -27,7 +35,7 @@ class ProjectPagination(LimitOffsetPagination):
 
 class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, CreateAPIView):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     lookup_field = 'id'

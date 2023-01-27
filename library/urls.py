@@ -19,24 +19,19 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework import urls
 
-from app.views import AuthorModelViewSet, BiographyModelViewSet, BookModelViewSet, ArticleModelViewSet, MyAPIView
-from todo.views import UserModelViewSet, ProjectModelViewSet, ToDoModelViewSet
+from todo.views import UserModelViewSet, ProjectModelViewSet, ToDoModelViewSet, CurrentUserView
 
 
 
 router = DefaultRouter()
-router.register('authors', AuthorModelViewSet)
-router.register('biography', BiographyModelViewSet)
-router.register('books', BookModelViewSet)
-router.register('articles', ArticleModelViewSet)
 router.register('workers', UserModelViewSet, basename="workers")
 router.register('projects', ProjectModelViewSet, basename='projects')
 router.register('todo', ToDoModelViewSet, basename='todoo')
-router.register('my', MyAPIView, basename='my')
+router.register('users', CurrentUserView, basename="users")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path('api-token-auth/', obtain_auth_token)
+    path('api-token-auth/', obtain_auth_token),
 ]
