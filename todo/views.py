@@ -19,8 +19,8 @@ class CurrentUserView(ViewSet, ListAPIView):
        
 
 class UserModelViewSet(ViewSet, ListAPIView, CreateAPIView, UpdateAPIView, RetrieveAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = Worker.objects.all()
     serializer_class = UserModelSerializer
     lookup_field = 'id'
