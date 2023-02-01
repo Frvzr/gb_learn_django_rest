@@ -18,8 +18,8 @@ class ProjectModelSerializer(ModelSerializer):
     #worker = UserModelSerializer(many=True)
     class Meta:
         model = Project
-        #fields = '__all__'
-        fields = ['name', 'link', 'worker']
+        fields = '__all__'
+        #fields = ['name', 'link', 'worker']
 
 
 class ToDoModelSerializer(ModelSerializer):

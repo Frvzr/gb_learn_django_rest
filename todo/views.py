@@ -33,7 +33,7 @@ class ProjectPagination(LimitOffsetPagination):
     default_limit = 10
 
 
-class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, CreateAPIView):
+class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView):
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
