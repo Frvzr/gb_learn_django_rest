@@ -1,6 +1,6 @@
 from rest_framework.viewsets import  ViewSet
 from todo.models import Worker, Project, ToDo
-from todo.serializer import UserModelSerializer, ProjectModelSerializer, ToDoModelSerializer, UserSerializer
+from todo.serializer import UserModelSerializer, ProjectModelSerializer, ToDoModelSerializer, UserSerializer, UserSerializer2
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.pagination import LimitOffsetPagination
@@ -16,7 +16,11 @@ class CurrentUserView(ViewSet, ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'
-       
+
+    def get_serializer_class(self):
+        if self.request.version == '2.0':
+            return UserSerializer2
+        return UserSerializer       
 
 class UserModelViewSet(ViewSet, ListAPIView, CreateAPIView, UpdateAPIView, RetrieveAPIView):
     authentication_classes = [SessionAuthentication]
