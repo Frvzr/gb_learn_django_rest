@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -166,4 +167,8 @@ REST_FRAMEWORK = {
     #'PAGE_SIZE': 100
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
 
+}
+
+FRAPHENE = {
+    'SCHEME': 'library.scheme.scheme'
 }
