@@ -17,6 +17,7 @@ pip install django-filter
 pip install django-cors-headers
 pip install djangorestframework-camel-case
 pip install drf-yasg
+pip install graphene-django  
 
 django-admin startproject projectname
 django-admin startapp appname
