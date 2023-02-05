@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from config import KEY
 from pathlib import Path
-from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -169,6 +168,6 @@ REST_FRAMEWORK = {
 
 }
 
-FRAPHENE = {
-    'SCHEME': 'library.scheme.scheme'
+GRAPHENE = {
+    'SCHEMA': 'library.schema.schema'
 }
