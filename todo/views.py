@@ -49,14 +49,14 @@ class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, CreateAPIView, 
 
 
 class ToDoPagination(LimitOffsetPagination):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     default_limit = 20
 
 
 class ToDoModelViewSet(ViewSet, CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
     lookup_field = 'id'
