@@ -2,7 +2,7 @@ from rest_framework.viewsets import  ViewSet
 from todo.models import Worker, Project, ToDo
 from todo.serializer import UserModelSerializer, ProjectModelSerializer, ToDoModelSerializer, UserSerializer, UserSerializer2
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, ListCreateAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
@@ -22,9 +22,9 @@ class CurrentUserView(ViewSet, ListAPIView):
             return UserSerializer2
         return UserSerializer       
 
-class UserModelViewSet(ViewSet, ListAPIView, CreateAPIView, UpdateAPIView, RetrieveAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+class UserModelViewSet(ViewSet, ListCreateAPIView, UpdateAPIView, RetrieveAPIView):
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = Worker.objects.all()
     serializer_class = UserModelSerializer
     lookup_field = 'id'
@@ -32,39 +32,43 @@ class UserModelViewSet(ViewSet, ListAPIView, CreateAPIView, UpdateAPIView, Retri
 
 
 class ProjectPagination(LimitOffsetPagination):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     default_limit = 10
 
 
-class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+class ProjectModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView, UpdateAPIView):
+    #authentication_classes = [SessionAuthentication]
+    #permission_classes = [IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     lookup_field = 'id'
     pagination_class = ProjectPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ('name',)
+    filterset_fields = ('id', 'name', 'link', 'worker')
 
 
 class ToDoPagination(LimitOffsetPagination):
     #authentication_classes = [SessionAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
-    default_limit = 20
+    default_limit = 10
 
 
-class ToDoModelViewSet(ViewSet, CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView):
+class ToDoModelViewSet(ViewSet, CreateAPIView, ListAPIView, DestroyAPIView, RetrieveAPIView, UpdateAPIView):
     #authentication_classes = [SessionAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
     lookup_field = 'id'
     pagination_class = ToDoPagination
-    filterset_fields = ('project',)
+    filterset_fields = ('id', 'project', 'text', 'created', 'updated', 'writer', 'completed')
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    # def get(self, request, *args, **kwargs):
+    #     return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+    # def put(self, request, *args, **kwargs):
+    #     return self.update(request, *args, **kwargs)
+
+    # def delete(self, request, *args, **kwargs):
+    #     return self.destroy(request, *args, **kwargs)

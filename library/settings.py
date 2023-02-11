@@ -141,8 +141,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
         #'rest_framework.renderers.AdminRenderer',
-        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
-        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+        #'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        #'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
     ), 
     'DEFAULT_PERMISSION_CLASSES': (
         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
