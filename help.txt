@@ -25,6 +25,7 @@ django-admin startapp appname
 python manage.py makemigrations
 python manage.py migrate
 
+
 npm start
 npm install -g npx
 npx create-react-app appname
