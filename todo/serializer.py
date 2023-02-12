@@ -18,7 +18,7 @@ class UserModelSerializer(ModelSerializer):
         model = Worker
         #fields = '__all__'
         fields = ['id', 'first_name', 'last_name']
-        
+
 
 class ProjectModelSerializer(ModelSerializer):
     #worker = UserModelSerializer(many=True)

@@ -22,12 +22,18 @@ class CurrentUserView(ViewSet, ListAPIView):
             return UserSerializer2
         return UserSerializer       
 
-class UserModelViewSet(ViewSet, ListCreateAPIView, UpdateAPIView, RetrieveAPIView):
+class WorkerPagination(LimitOffsetPagination):
+    default_limit = 10
+
+class UserModelViewSet(ViewSet, ListAPIView, RetrieveAPIView, DestroyAPIView, CreateAPIView, UpdateAPIView):
     #authentication_classes = [SessionAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     queryset = Worker.objects.all()
     serializer_class = UserModelSerializer
     lookup_field = 'id'
+    pagination_class = WorkerPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ('last_name', 'first_name')
     filterset_fields = ('id', 'first_name', 'last_name')
 
 
