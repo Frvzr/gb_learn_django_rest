@@ -2,7 +2,8 @@ python manage.py runserver
 
 # Создание и активация виртуального окружения
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate - for Windows
+source venv/bin/activate - for Linux
 
 # Создание и установка зависимостей
 pip freeze > requirements.txt
